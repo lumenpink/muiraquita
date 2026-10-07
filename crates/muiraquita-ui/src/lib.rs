@@ -487,6 +487,105 @@ body {
   color: var(--accent);
   text-decoration: none;
 }
+
+/* Responsive Mobile & Tablet Layout */
+.btn, .nav-btn, .tab-btn, .btn-action, .poll-vote-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Mobile Phone View (< 640px) */
+@media (max-width: 639px) {
+  .main-layout {
+    flex-direction: column;
+    padding-bottom: calc(60px + var(--safe-bottom));
+  }
+  .nav-rail {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: calc(56px + var(--safe-bottom));
+    padding: 0 0.5rem var(--safe-bottom) 0.5rem;
+    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-right: none;
+    border-top: 1px solid var(--card-border);
+    background-color: #010409;
+    z-index: 50;
+    gap: 0;
+  }
+  .nav-btn {
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.35rem 0.2rem;
+    font-size: 0.75rem;
+    gap: 0.15rem;
+    border-radius: 4px;
+    min-height: 48px;
+    text-align: center;
+  }
+  .nav-btn .nav-icon {
+    font-size: 1.25rem;
+  }
+  .content-area {
+    padding: 1rem 0.75rem;
+    max-width: 100%;
+  }
+  .app-header {
+    padding: calc(0.6rem + var(--safe-top)) 0.8rem 0.6rem 0.8rem;
+  }
+  .brand-subtitle {
+    display: none;
+  }
+  .brand-title {
+    font-size: 1.1rem;
+  }
+  .user-me-link {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .composer-card {
+    padding: 1rem;
+  }
+  .site-footer {
+    padding-bottom: calc(72px + var(--safe-bottom));
+  }
+}
+
+/* Tablet View (640px - 1024px) */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .nav-rail {
+    width: 80px;
+    padding: 1rem 0.25rem;
+    align-items: center;
+  }
+  .nav-btn {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.6rem 0.2rem;
+    font-size: 0.75rem;
+    gap: 0.3rem;
+    width: 100%;
+    min-height: 48px;
+    text-align: center;
+  }
+  .nav-btn .nav-icon {
+    font-size: 1.35rem;
+  }
+  .content-area {
+    padding: 1.5rem;
+    max-width: 720px;
+  }
+}
 "#;
 
 #[component]

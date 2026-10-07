@@ -1,0 +1,24 @@
+[package]
+name = "muiraquita-mobile"
+version = "0.1.0"
+edition = "2024"
+authors = ["Lumen <lumen@2lp.in>"]
+description = "Native mobile application (Android & iOS) for Muiraquitã"
+license = "GPL-3.0"
+
+[[bin]]
+name = "muiraquita-mobile"
+path = "src/main.rs"
+
+[lib]
+crate-type = ["staticlib", "cdylib", "rlib"]
+path = "src/lib.rs"
+
+[dependencies]
+muiraquita-domain = { path = "../muiraquita-domain" }
+muiraquita-adapters = { path = "../muiraquita-adapters" }
+muiraquita-ui = { path = "../muiraquita-ui" }
+dioxus = { version = "0.8.0-alpha.1", default-features = false, features = ["mobile", "launch"] }
+
+[lints]
+workspace = true

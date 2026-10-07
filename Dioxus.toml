@@ -1,0 +1,37 @@
+[application]
+name = "Muiraquitã"
+default_platform = "desktop"
+asset_dir = "assets"
+
+[application.tools]
+
+[application.sub_packages]
+
+[desktop]
+
+[web.app]
+title = "Muiraquitã — IndieWeb & IndieInABox Social Suite"
+
+[web.watcher]
+reload_html = true
+watch_path = ["crates/muiraquita-ui"]
+
+[bundle]
+identifier = "in.2lp.muiraquita"
+publisher = "Lumen Pink"
+icon = ["site/favicon.ico"]
+category = "SocialNetworking"
+short_description = "A suíte social soberana para a Web Aberta (IndieWeb + IndieInABox)"
+long_description = """
+Muiraquitã é uma suíte social soberana multiplataforma (Desktop, Web e Mobile) que implementa 100% dos padrões IndieWeb (IndieAuth, Microsub, Micropub) combinados com as extensões nativas do IndieInABox (enquetes interativas, content warnings com blur, badges federados).
+"""
+
+[bundle.android]
+package_name = "in.2lp.muiraquita"
+permissions = [
+    "android.permission.INTERNET",
+    "android.permission.ACCESS_NETWORK_STATE"
+]
+
+[bundle.ios]
+bundle_identifier = "in.2lp.muiraquita"

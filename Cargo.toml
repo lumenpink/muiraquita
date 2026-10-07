@@ -5,6 +5,7 @@ members = [
     "crates/muiraquita-ui",
     "crates/muiraquita-desktop",
     "crates/muiraquita-web",
+    "crates/muiraquita-mobile",
 ]
 resolver = "2"
 

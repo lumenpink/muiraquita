@@ -48,12 +48,18 @@ muiraquita/
 ├── crates/
 │   ├── muiraquita-domain/      # Núcleo de regras de negócio puras (zero I/O, zero dependência de framework)
 │   ├── muiraquita-adapters/    # Implementações de HTTP, XDG Base Directory e Fakes in-memory
-│   ├── muiraquita-ui/          # Componentes Dioxus 0.8 (Signals, RSX reativo, tema Baquara)
+│   ├── muiraquita-ui/          # Componentes Dioxus 0.8 responsivos (celular, tablet e desktop)
 │   ├── muiraquita-desktop/     # Binário nativo Desktop (Linux, macOS, Windows via WebView)
-│   └── muiraquita-web/         # Binário WebAssembly para navegadores
+│   ├── muiraquita-web/         # Binário WebAssembly / PWA para navegadores
+│   └── muiraquita-mobile/      # Binário nativo Mobile (Android & iOS via Dioxus Mobile)
 ├── site/                       # Vitrine estática hospedada em muiraquita.2lp.in
 └── .forgejo/workflows/         # Integração Contínua (CI)
 ```
+
+### 📱 Suporte Mobile & Tablet (Dia Zero)
+- **Celular (< 640px)**: Bottom bar ergonômica com toque confortável (alvos ≥ 48px), safe-area insets (`env(safe-area-inset-top)` / `env(safe-area-inset-bottom)` para notches e home bars), e feed em tela cheia.
+- **Tablet (640px - 1024px)**: Layout adaptativo com barra de navegação compacta e visualização ampla de canais e timeline.
+- **Dioxus.toml**: Configurado com App ID `in.2lp.muiraquita` e permissões Android (`INTERNET`).
 
 ### Conformidade XDG Base Directory
 - Configurações: `$XDG_CONFIG_HOME/muiraquita/config.json`
@@ -76,6 +82,11 @@ cargo test --workspace
 ### Rodando o Aplicativo Desktop
 ```bash
 cargo run --bin muiraquita
+```
+
+### Rodando o Aplicativo Mobile (Simulador/Desktop Runner)
+```bash
+cargo run --bin muiraquita-mobile
 ```
 
 ---
