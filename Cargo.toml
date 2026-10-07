@@ -1,0 +1,15 @@
+[workspace]
+members = [
+    "crates/muiraquita-domain",
+    "crates/muiraquita-adapters",
+    "crates/muiraquita-ui",
+    "crates/muiraquita-desktop",
+    "crates/muiraquita-web",
+]
+resolver = "2"
+
+[workspace.lints.rust]
+warnings = "deny"
+
+[workspace.lints.clippy]
+all = "deny"

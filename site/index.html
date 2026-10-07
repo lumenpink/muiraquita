@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muiraquitã — IndieWeb & IndieInABox Social Suite</title>
+  <meta name="description" content="Muiraquitã é uma suíte social IndieWeb e IndieInABox nativa e moderna escrita em Rust (Edição 2024) com Dioxus 0.8. Suporte completo a IndieAuth, Microsub, Micropub e extensões IIAB.">
+  <meta name="theme-color" content="#121820">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐸</text></svg>">
+  <style>
+    :root {
+      --bg: #121820;
+      --card-bg: #1a222d;
+      --card-border: #2a3749;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #2ea043;
+      --accent-hover: #3fb950;
+      --iiab-badge: #d29922;
+      --font-stack: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(46, 160, 67, 0.15);
+      color: var(--accent);
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(46, 160, 67, 0.3);
+    }
+    h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .card h2 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card p {
+      font-size: 0.925rem;
+      color: var(--text-muted);
+    }
+    .badge-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-indie { background: #1f6feb; color: #fff; }
+    .badge-iiab { background: #9e6a03; color: #fff; }
+    .badge-rust { background: #cf222e; color: #fff; }
+    .actions {
+      text-align: center;
+      margin-bottom: 3rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.15s ease;
+    }
+    .btn-primary {
+      background-color: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+    .btn-secondary {
+      background-color: #212836;
+      border: 1px solid var(--card-border);
+      color: var(--text);
+    }
+    .btn-secondary:hover {
+      background-color: #2a3749;
+    }
+    footer {
+      margin-top: auto;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--card-border);
+      padding-top: 2rem;
+      width: 100%;
+    }
+    footer a {
+      color: inherit;
+      text-decoration: underline;
+    }
+    footer a:hover {
+      color: var(--accent);
+    }
+    .footer-line {
+      margin-bottom: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-badge">🐸 Amuleto da Soberania Digital</div>
+      <h1>Muiraquitã</h1>
+      <p class="subtitle">A suíte social soberana para a Web Aberta. Leitor Microsub, Compositor Micropub, Autenticação IndieAuth e extensões nativas IndieInABox.</p>
+    </header>
+
+    <div class="actions">
+      <a href="https://codeberg.org/lumenpink/muiraquita" class="btn btn-primary" target="_blank" rel="noopener">
+        <span>📦</span> Repositório Codeberg
+      </a>
+      <a href="https://github.com/lumenpink/indieinabox" class="btn btn-secondary" target="_blank" rel="noopener">
+        <span>🌐</span> IndieInABox Core
+      </a>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2><span class="badge-tag badge-indie">W3C</span> 100% IndieWeb</h2>
+        <p>Login sem senha via IndieAuth (OAuth 2.1 + PKCE S256). Timeline fluida com Microsub (h-card, JF2) e publicação multiplataforma via Micropub com POSSE syndication.</p>
+      </div>
+
+      <div class="card">
+        <h2><span class="badge-tag badge-iiab">IIAB</span> Extensões Nativas</h2>
+        <p>Enquetes interativas descentralizadas, Content Warnings com blur progressivo no leitor e compositor, e badges federados para ActivityPub, twtxt, atproto e nostr.</p>
+      </div>
+
+      <div class="card">
+        <h2><span class="badge-tag badge-rust">Rust</span> Rust Edition 2024</h2>
+        <p>Construído no estado da arte com Dioxus 0.8, tipagem estrita contra zero-warnings, separação hexagonal limpa (Domain, Adapters, UI, Desktop, Web) e XDG Base Directory.</p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-line">
+        Orgulhosamente produzido por uma <a href="https://travesti.2lp.in/pt/" target="_blank" rel="noopener">travesti latina</a> 🏳️‍⚧️ :)
+      </div>
+      <div class="footer-line">
+        Muiraquitã v0.1.0 • por <a href="https://lumen.pink" target="_blank" rel="noopener">Lumen Pink</a> • Brasil 🇧🇷 • <a href="https://codeberg.org/lumenpink/muiraquita" target="_blank" rel="noopener">GPL-3.0</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

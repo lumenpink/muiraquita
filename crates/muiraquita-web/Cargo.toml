@@ -1,0 +1,16 @@
+[package]
+name = "muiraquita-web"
+version = "0.1.0"
+edition = "2024"
+authors = ["Lumen <lumen@2lp.in>"]
+description = "Web client (WASM) for Muiraquitã"
+license = "GPL-3.0"
+
+[dependencies]
+muiraquita-domain = { path = "../muiraquita-domain" }
+muiraquita-adapters = { path = "../muiraquita-adapters" }
+muiraquita-ui = { path = "../muiraquita-ui" }
+dioxus = { version = "0.8.0-alpha.1", default-features = false, features = ["web", "launch"] }
+
+[lints]
+workspace = true

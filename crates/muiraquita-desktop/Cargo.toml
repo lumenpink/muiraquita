@@ -1,0 +1,20 @@
+[package]
+name = "muiraquita-desktop"
+version = "0.1.0"
+edition = "2024"
+authors = ["Lumen <lumen@2lp.in>"]
+description = "Native desktop application for Muiraquitã"
+license = "GPL-3.0"
+
+[[bin]]
+name = "muiraquita"
+path = "src/main.rs"
+
+[dependencies]
+muiraquita-domain = { path = "../muiraquita-domain" }
+muiraquita-adapters = { path = "../muiraquita-adapters" }
+muiraquita-ui = { path = "../muiraquita-ui" }
+dioxus = { version = "0.8.0-alpha.1", default-features = false, features = ["desktop", "launch"] }
+
+[lints]
+workspace = true

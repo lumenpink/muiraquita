@@ -1,0 +1,22 @@
+[package]
+name = "muiraquita-ui"
+version = "0.1.0"
+edition = "2024"
+authors = ["Lumen <lumen@2lp.in>"]
+description = "Dioxus 0.8 UI components and reactive state for Muiraquitã"
+license = "GPL-3.0"
+
+[dependencies]
+muiraquita-domain = { path = "../muiraquita-domain" }
+muiraquita-adapters = { path = "../muiraquita-adapters" }
+dioxus = { version = "0.8.0-alpha.1", default-features = false, features = ["macro", "html", "signals", "hooks"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+url = { version = "2.5", features = ["serde"] }
+wasm-bindgen-futures = "0.4"
+
+[dev-dependencies]
+dioxus-ssr = "0.8.0-alpha.1"
+
+[lints]
+workspace = true
