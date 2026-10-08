@@ -45,7 +45,3 @@ jobs:
           else
             echo "CLOUDFLARE_API_TOKEN not set, skipping Cloudflare deploy."
           fi
-      - name: "Deploy to Codeberg Pages (Fallback)"
-        uses: https://codeberg.org/actions/pages@v1
-        with:
-          path: site

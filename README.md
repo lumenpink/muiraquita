@@ -8,7 +8,7 @@
 
 > **Muiraquitã**: Amuleto verde da Amazônia esculpido em jadeíta ou esteatita, símbolo lendário de cura, coragem e soberania das Icamiabas. Aqui, o amuleto que protege e liberta sua presença digital na web aberta.
 
-**Muiraquitã** é a suíte social soberana integrada ao ecossistema [IndieInABox (IIAB)](https://github.com/lumenpink/indieinabox), implementando 100% dos padrões abertos da **IndieWeb** somados às extensões nativas do IIAB (`_indieinabox`), construída estritamente em **Rust Edição 2024**, **Dioxus 0.8** e seguindo fielmente o padrão **GOST v1.1.0** (perfil `lumen`).
+**Muiraquitã** é a suíte social soberana integrada ao ecossistema [IndieInABox (IIAB)](https://codeberg.org/indieinabox/indieinabox), implementando 100% dos padrões abertos da [IndieWeb](https://indieweb.org) somados às extensões nativas do IIAB (`_indieinabox`), construída estritamente em **Rust Edição 2024**, **Dioxus 0.8** e seguindo fielmente o padrão **GOST v1.2.0** (perfil `kollontai`).
 
 ---
 
