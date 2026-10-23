@@ -1,10 +1,7 @@
 use dioxus::prelude::*;
 
 #[component]
-pub fn AuthModal(
-    on_login: EventHandler<String>,
-    on_close: EventHandler<()>,
-) -> Element {
+pub fn AuthModal(on_login: EventHandler<String>, on_close: EventHandler<()>) -> Element {
     let mut domain = use_signal(|| "https://lumen.pink/".to_string());
 
     rsx! {

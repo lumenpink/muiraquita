@@ -2,11 +2,7 @@ use dioxus::prelude::*;
 use muiraquita_domain::iiab::Poll;
 
 #[component]
-pub fn PollWidget(
-    poll: Poll,
-    can_vote: bool,
-    on_vote: EventHandler<usize>,
-) -> Element {
+pub fn PollWidget(poll: Poll, can_vote: bool, on_vote: EventHandler<usize>) -> Element {
     let total = poll.total_votes();
 
     rsx! {

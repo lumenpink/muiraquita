@@ -2,10 +2,7 @@ use crate::state::ActiveTab;
 use dioxus::prelude::*;
 
 #[component]
-pub fn NavRail(
-    active: ActiveTab,
-    on_change: EventHandler<ActiveTab>,
-) -> Element {
+pub fn NavRail(active: ActiveTab, on_change: EventHandler<ActiveTab>) -> Element {
     rsx! {
         nav { class: "nav-rail",
             button {

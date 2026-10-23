@@ -44,8 +44,14 @@ pub fn Composer(on_publish: EventHandler<MicropubDraft>) -> Element {
         if *has_poll.read() {
             draft.poll = Some(Poll::new(
                 vec![
-                    PollOption { title: poll_opt_1.read().clone(), votes: 0 },
-                    PollOption { title: poll_opt_2.read().clone(), votes: 0 },
+                    PollOption {
+                        title: poll_opt_1.read().clone(),
+                        votes: 0,
+                    },
+                    PollOption {
+                        title: poll_opt_2.read().clone(),
+                        votes: 0,
+                    },
                 ],
                 false,
             ));

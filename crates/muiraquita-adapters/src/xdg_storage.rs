@@ -70,8 +70,9 @@ impl StoragePort for XdgStorage {
     async fn save_session(&self, session: &AuthSession) -> Result<(), DomainError> {
         let path = self.session_path();
         if let Some(parent) = path.parent() {
-            std::fs::create_dir_all(parent)
-                .map_err(|e| DomainError::Storage(format!("Falha ao criar diretório XDG State: {e}")))?;
+            std::fs::create_dir_all(parent).map_err(|e| {
+                DomainError::Storage(format!("Falha ao criar diretório XDG State: {e}"))
+            })?;
         }
         let content = serde_json::to_string_pretty(session)
             .map_err(|e| DomainError::Storage(format!("Falha ao serializar sessão: {e}")))?;
@@ -109,8 +110,9 @@ impl StoragePort for XdgStorage {
     async fn save_config(&self, config: &AppConfig) -> Result<(), DomainError> {
         let path = self.config_path();
         if let Some(parent) = path.parent() {
-            std::fs::create_dir_all(parent)
-                .map_err(|e| DomainError::Storage(format!("Falha ao criar diretório XDG Config: {e}")))?;
+            std::fs::create_dir_all(parent).map_err(|e| {
+                DomainError::Storage(format!("Falha ao criar diretório XDG Config: {e}"))
+            })?;
         }
         let content = serde_json::to_string_pretty(config)
             .map_err(|e| DomainError::Storage(format!("Falha ao serializar config: {e}")))?;

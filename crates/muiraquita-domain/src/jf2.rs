@@ -148,7 +148,10 @@ mod tests {
         let entry: Jf2Entry = serde_json::from_str(json).unwrap();
         assert_eq!(entry.entry_type, "entry");
         assert_eq!(entry.author_name(), "Lumen");
-        assert_eq!(entry.display_title(), "Construindo o Muiraquitã com Dioxus 0.8!");
+        assert_eq!(
+            entry.display_title(),
+            "Construindo o Muiraquitã com Dioxus 0.8!"
+        );
         assert_eq!(entry.category, vec!["rust", "indieweb"]);
 
         let iiab = entry.iiab();

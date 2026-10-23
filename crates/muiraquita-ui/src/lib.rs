@@ -25,6 +25,10 @@ pub const APP_STYLES: &str = r#"
   --cw-bg: #382400;
   --cw-border: #bb8009;
   --cw-text: #f0883e;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
@@ -702,7 +706,14 @@ pub fn App() -> Element {
                 let redirect_uri = Url::parse("https://muiraquita.2lp.in/callback").unwrap();
 
                 if let Ok(sess) = s
-                    .exchange_code(&dummy_token_ep, "fake-code", &parsed, &redirect_uri, &client_id, &pkce)
+                    .exchange_code(
+                        &dummy_token_ep,
+                        "fake-code",
+                        &parsed,
+                        &redirect_uri,
+                        &client_id,
+                        &pkce,
+                    )
                     .await
                 {
                     state.write().session.set(Some(sess));

@@ -6,9 +6,9 @@
 [![Dioxus](https://img.shields.io/badge/Dioxus-0.8.0--alpha.1-orange.svg)](https://dioxuslabs.com)
 [![GOST](https://img.shields.io/badge/GOST-v1.1.0-brightgreen.svg)](#padrao-gost)
 
-> **Muiraquitã**: Amuleto verde da Amazônia esculpido em jadeíta ou esteatita, símbolo lendário de cura, coragem e soberania das Icamiabas. Aqui, o amuleto que protege e liberta sua presença digital na web aberta.
+> **Muiraquitã**: Amuleto verde da Amazônia esculpido em jadeíta ou esteatita, símbolo lendário de cura, coragem e autonomia das Icamiabas. Aqui, o amuleto que acolhe e liberta sua conversa e presença na web aberta sem intermediários.
 
-**Muiraquitã** é a suíte social soberana integrada ao ecossistema [IndieInABox (IIAB)](https://codeberg.org/indieinabox/indieinabox), implementando 100% dos padrões abertos da [IndieWeb](https://indieweb.org) somados às extensões nativas do IIAB (`_indieinabox`), construída estritamente em **Rust Edição 2024**, **Dioxus 0.8** e seguindo fielmente o padrão **GOST v1.2.0** (perfil `kollontai`).
+**Muiraquitã** é a suíte social comunitária e livre integrada ao ecossistema [IndieInABox (IIAB)](https://codeberg.org/indieinabox/indieinabox), implementando os padrões abertos da [IndieWeb](https://indieweb.org) somados às extensões nativas do IIAB (`_indieinabox`), construída estritamente em **Rust Edição 2024**, **Dioxus 0.8** e seguindo fielmente o padrão **GOST v1.2.0** (perfil `kollontai`).
 
 ---
 

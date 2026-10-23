@@ -1,6 +1,6 @@
 use crate::indieauth::{AuthSession, IndieAuthEndpoints, PkcePair};
-use crate::microsub::{ChannelsResponse, MicrosubRequest, TimelineResponse};
 use crate::micropub::MicropubDraft;
+use crate::microsub::{ChannelsResponse, MicrosubRequest, TimelineResponse};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 use url::Url;

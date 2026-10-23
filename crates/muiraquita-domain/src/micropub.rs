@@ -1,4 +1,4 @@
-use crate::iiab::{extract_hashtags, Poll};
+use crate::iiab::{Poll, extract_hashtags};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -160,7 +160,10 @@ mod tests {
 
         let payload = draft.to_json_payload();
         let props = payload["properties"].as_object().unwrap();
-        assert_eq!(props.get("name").unwrap(), &serde_json::json!(["Meu Artigo"]));
+        assert_eq!(
+            props.get("name").unwrap(),
+            &serde_json::json!(["Meu Artigo"])
+        );
         assert_eq!(
             props.get("_indieinabox_cw").unwrap(),
             &serde_json::json!(["Spoilers de Filosofia"])

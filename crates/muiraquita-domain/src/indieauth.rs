@@ -1,5 +1,5 @@
-use base64::engine::general_purpose::URL_SAFE_NO_PAD;
 use base64::Engine;
+use base64::engine::general_purpose::URL_SAFE_NO_PAD;
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use subtle::ConstantTimeEq;
@@ -71,8 +71,10 @@ impl PkcePair {
 
     /// Gera um par PKCE determinístico para testes
     pub fn mock_for_testing() -> Self {
-        Self::from_verifier("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~".to_string())
-            .expect("Mock verifier is valid length")
+        Self::from_verifier(
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~".to_string(),
+        )
+        .expect("Mock verifier is valid length")
     }
 
     /// Validação timing-safe de code_verifier (GOST Seção 13)
@@ -119,7 +121,10 @@ impl AuthSession {
 
     /// Comparação timing-safe de token para segurança
     pub fn verify_token(&self, candidate: &str) -> bool {
-        self.access_token.as_bytes().ct_eq(candidate.as_bytes()).into()
+        self.access_token
+            .as_bytes()
+            .ct_eq(candidate.as_bytes())
+            .into()
     }
 }
 

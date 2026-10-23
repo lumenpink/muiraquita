@@ -1,10 +1,10 @@
 use async_trait::async_trait;
 use muiraquita_domain::indieauth::{AuthSession, IndieAuthEndpoints, PkcePair};
-use muiraquita_domain::microsub::{ChannelsResponse, MicrosubRequest, TimelineResponse};
 use muiraquita_domain::micropub::MicropubDraft;
+use muiraquita_domain::microsub::{ChannelsResponse, MicrosubRequest, TimelineResponse};
 use muiraquita_domain::ports::{AuthPort, DomainError, MicropubPort, MicrosubPort};
-use reqwest::header::{HeaderMap, HeaderValue, AUTHORIZATION, CONTENT_TYPE};
 use reqwest::Client;
+use reqwest::header::{AUTHORIZATION, CONTENT_TYPE, HeaderMap, HeaderValue};
 use url::Url;
 
 /// Adaptador HTTP universal (reqwest com TLS moderno)
@@ -51,9 +51,7 @@ pub fn parse_link_rel(html: &str, target_rel: &str, base_url: &Url) -> Option<Ur
             || tag_lower.contains(&rel_pattern_space)
             || tag_lower.contains(&rel_pattern_space2);
 
-        if has_rel
-            && let Some(href_idx) = tag_lower.find("href=\"")
-        {
+        if has_rel && let Some(href_idx) = tag_lower.find("href=\"") {
             let after = &tag[href_idx + 6..];
             if let Some(close_idx) = after.find('"')
                 && let Ok(resolved) = base_url.join(&after[..close_idx])
@@ -81,11 +79,13 @@ impl AuthPort for HttpAdapter {
             .await
             .map_err(|e| DomainError::Network(format!("Erro ao ler corpo do perfil: {e}")))?;
 
-        let auth_ep = parse_link_rel(&html, "authorization_endpoint", me)
-            .ok_or_else(|| DomainError::Auth("authorization_endpoint não encontrado no perfil".to_string()))?;
+        let auth_ep = parse_link_rel(&html, "authorization_endpoint", me).ok_or_else(|| {
+            DomainError::Auth("authorization_endpoint não encontrado no perfil".to_string())
+        })?;
 
-        let token_ep = parse_link_rel(&html, "token_endpoint", me)
-            .ok_or_else(|| DomainError::Auth("token_endpoint não encontrado no perfil".to_string()))?;
+        let token_ep = parse_link_rel(&html, "token_endpoint", me).ok_or_else(|| {
+            DomainError::Auth("token_endpoint não encontrado no perfil".to_string())
+        })?;
 
         let micropub_ep = parse_link_rel(&html, "micropub", me);
         let microsub_ep = parse_link_rel(&html, "microsub", me);
@@ -123,11 +123,15 @@ impl AuthPort for HttpAdapter {
             .form(&params)
             .send()
             .await
-            .map_err(|e| DomainError::Network(format!("Erro na troca de código no token endpoint: {e}")))?;
+            .map_err(|e| {
+                DomainError::Network(format!("Erro na troca de código no token endpoint: {e}"))
+            })?;
 
         if !res.status().is_success() {
             let err_text = res.text().await.unwrap_or_default();
-            return Err(DomainError::Auth(format!("Falha na autorização: {err_text}")));
+            return Err(DomainError::Auth(format!(
+                "Falha na autorização: {err_text}"
+            )));
         }
 
         let json: serde_json::Value = res
@@ -141,13 +145,17 @@ impl AuthPort for HttpAdapter {
             .to_string();
 
         let returned_me = if let Some(me_str) = json["me"].as_str() {
-            Url::parse(me_str).map_err(|e| DomainError::Auth(format!("URL 'me' retornada inválida: {e}")))?
+            Url::parse(me_str)
+                .map_err(|e| DomainError::Auth(format!("URL 'me' retornada inválida: {e}")))?
         } else {
             me.clone()
         };
 
         let scope = if let Some(scope_str) = json["scope"].as_str() {
-            scope_str.split_whitespace().map(|s| s.to_string()).collect()
+            scope_str
+                .split_whitespace()
+                .map(|s| s.to_string())
+                .collect()
         } else {
             vec![]
         };
@@ -196,7 +204,9 @@ impl MicrosubPort for HttpAdapter {
 
         if !res.status().is_success() {
             let err_text = res.text().await.unwrap_or_default();
-            return Err(DomainError::Protocol(format!("Erro do servidor Microsub: {err_text}")));
+            return Err(DomainError::Protocol(format!(
+                "Erro do servidor Microsub: {err_text}"
+            )));
         }
 
         let channels: ChannelsResponse = res
@@ -251,7 +261,9 @@ impl MicrosubPort for HttpAdapter {
 
         if !res.status().is_success() {
             let err_text = res.text().await.unwrap_or_default();
-            return Err(DomainError::Protocol(format!("Erro do servidor Microsub: {err_text}")));
+            return Err(DomainError::Protocol(format!(
+                "Erro do servidor Microsub: {err_text}"
+            )));
         }
 
         let timeline: TimelineResponse = res
@@ -285,7 +297,9 @@ impl MicrosubPort for HttpAdapter {
 
         if !res.status().is_success() {
             let err_text = res.text().await.unwrap_or_default();
-            return Err(DomainError::Protocol(format!("Ação rejeitada pelo servidor: {err_text}")));
+            return Err(DomainError::Protocol(format!(
+                "Ação rejeitada pelo servidor: {err_text}"
+            )));
         }
 
         Ok(())
@@ -318,9 +332,14 @@ impl MicropubPort for HttpAdapter {
             .await
             .map_err(|e| DomainError::Network(format!("Erro ao enviar post Micropub: {e}")))?;
 
-        if !res.status().is_success() && res.status().as_u16() != 201 && res.status().as_u16() != 202 {
+        if !res.status().is_success()
+            && res.status().as_u16() != 201
+            && res.status().as_u16() != 202
+        {
             let err_text = res.text().await.unwrap_or_default();
-            return Err(DomainError::Protocol(format!("Criação Micropub rejeitada: {err_text}")));
+            return Err(DomainError::Protocol(format!(
+                "Criação Micropub rejeitada: {err_text}"
+            )));
         }
 
         let location = res

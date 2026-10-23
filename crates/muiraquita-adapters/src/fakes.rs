@@ -177,7 +177,11 @@ impl AuthPort for FakeSocialStore {
         let session = AuthSession::new(
             me.clone(),
             "fake-access-token-12345".to_string(),
-            vec!["create".to_string(), "channels".to_string(), "read".to_string()],
+            vec![
+                "create".to_string(),
+                "channels".to_string(),
+                "read".to_string(),
+            ],
             Some(Url::parse("https://lumen.pink/microsub").unwrap()),
             Some(Url::parse("https://lumen.pink/micropub").unwrap()),
         );
@@ -249,7 +253,10 @@ impl MicropubPort for FakeSocialStore {
         _token: &str,
         draft: &MicropubDraft,
     ) -> Result<Option<String>, DomainError> {
-        let new_url = format!("https://lumen.pink/notes/{}", chrono::Utc::now().timestamp());
+        let new_url = format!(
+            "https://lumen.pink/notes/{}",
+            chrono::Utc::now().timestamp()
+        );
         let new_entry = Jf2Entry {
             entry_type: "entry".to_string(),
             uid: Some(new_url.clone()),
@@ -346,7 +353,10 @@ mod tests {
             content: None,
             poll_option: Some(0),
         };
-        store.send_action(&dummy_url, "token", &vote_req).await.unwrap();
+        store
+            .send_action(&dummy_url, "token", &vote_req)
+            .await
+            .unwrap();
 
         // 4. Verify vote count incremented in-memory
         let timeline_after = store.get_timeline(&dummy_url, "token", &req).await.unwrap();
@@ -360,7 +370,10 @@ mod tests {
         let dummy_url = Url::parse("https://lumen.pink/micropub").unwrap();
 
         let draft = MicropubDraft::new_note("Testando nova nota com #muiraquita!");
-        let created_url = store.create_post(&dummy_url, "token", &draft).await.unwrap();
+        let created_url = store
+            .create_post(&dummy_url, "token", &draft)
+            .await
+            .unwrap();
         assert!(created_url.is_some());
 
         let req = MicrosubRequest::Timeline {
@@ -371,6 +384,9 @@ mod tests {
         };
         let timeline = store.get_timeline(&dummy_url, "token", &req).await.unwrap();
         assert_eq!(timeline.items.len(), 4);
-        assert_eq!(timeline.items[0].display_title(), "Testando nova nota com #muiraquita!");
+        assert_eq!(
+            timeline.items[0].display_title(),
+            "Testando nova nota com #muiraquita!"
+        );
     }
 }

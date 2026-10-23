@@ -19,7 +19,10 @@ pub fn EntryCard(
     let author_photo = entry.author.as_ref().and_then(|a| a.photo.clone());
 
     let entry_url = entry.url.clone().unwrap_or_default();
-    let published = entry.published.clone().unwrap_or_else(|| "Recente".to_string());
+    let published = entry
+        .published
+        .clone()
+        .unwrap_or_else(|| "Recente".to_string());
     let iiab = entry.iiab();
     let cw = iiab.content_warning.clone();
     let poll = iiab.poll.clone();

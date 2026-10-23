@@ -12,10 +12,7 @@ fn test_landing_page_e_readme_amuleto_social() {
     let site_lower = site_html.to_lowercase();
     let readme_lower = readme.to_lowercase();
 
-    let proibidos = [
-        "soberania digital",
-        "leitor microsub, compositor micropub",
-    ];
+    let proibidos = ["soberania digital", "leitor microsub, compositor micropub"];
 
     for termo in proibidos {
         assert!(
