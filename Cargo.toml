@@ -14,3 +14,10 @@ warnings = "deny"
 
 [workspace.lints.clippy]
 all = "deny"
+
+[profile.release]
+opt-level = "z"
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
