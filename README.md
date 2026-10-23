@@ -89,6 +89,15 @@ cargo run --bin muiraquita
 cargo run --bin muiraquita-mobile
 ```
 
+### Compilação Otimizada e Binário Estático
+```bash
+# Build de release com LTO fat, strip e otimização agressiva de tamanho
+cargo build --release
+
+# Compilação estática universal (static-pie) contra musl libc
+cargo build --release --target x86_64-unknown-linux-musl
+```
+
 ---
 
 ## 📜 Padrão GOST
